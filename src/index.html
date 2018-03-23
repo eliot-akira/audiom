@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+</head>
+<body>
+  <div id="App"></div>
+
+<script type="text/jsx">
+
+const React = require('react')
+const { render } = require('react-dom')
+const { AppContainer } = require('react-hot-loader')
+
+// Render with state and action
+
+const { getState, setState, onStateChange } = require('./lib/stream')()
+const el = document.getElementById('App')
+
+let App = require('./App')
+
+const refresh = (props = {}) => {
+  const { state = getState() } = props
+  const action = (name, props = {}) =>
+    App.actions[name]({ state, setState, ...props })
+
+  render(
+    <AppContainer>
+      <App {...{ state, setState, action }}/>
+    </AppContainer>
+    , el
+  )
+}
+
+onStateChange(state => refresh({ state }))
+setState(App.initState || {})
+
+App.actions.init()
+
+// Hot-module replacement
+
+if (module.hot) module.hot.accept(() => {
+  App = require('./App')
+  refresh()
+})
+</script>
+
+</body>
+</html>

@@ -1,0 +1,10 @@
+
+out
+naudio/build
+naudio/bin
+
+_*
+node_modules
+*.lock
+package-lock.json
+.hardlinks

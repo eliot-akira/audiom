@@ -1,0 +1,47 @@
+{
+  "name": "audiom",
+  "productName": "Audiom",
+  "version": "0.1.0",
+  "description": "Modular music-making app",
+  "main": "src/index.js",
+  "scripts": {
+    "preinstall": "npm run build:naudio",
+    "build:naudio": "mkdir node_modules > /dev/null 2>&1; cd node_modules && ln -s ../naudio > /dev/null 2>&1; cd naudio && npm install --production --ignore-scripts",
+    "rebuild:naudio": "cd naudio && npm run build",
+    "start": "NODE_PATH=./src electron-forge start",
+    "build": "NODE_PATH=./src electron-forge package --platform=darwin",
+    "make": "NODE_PATH=./src electron-forge make",
+    "publish": "NODE_PATH=./src electron-forge publish",
+    "lint": "NODE_PATH=./src eslint --cache --color --ext .jsx,.js src"
+  },
+  "keywords": [],
+  "author": "eliot-akira",
+  "license": "MIT",
+  "config": {
+    "forge": "./forge.config.js"
+  },
+  "dependencies": {
+    "electron-compile": "^6.4.2",
+    "electron-devtools-installer": "^2.2.3",
+    "electron-squirrel-startup": "^1.0.0",
+    "naudio": "file:./naudio",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-hot-loader": "^4.0.0",
+    "styled-components": "^3.2.3",
+    "styled-system": "^2.2.1"
+  },
+  "devDependencies": {
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-react-require": "^3.0.0",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-plugin-transform-es2015-classes": "^6.24.1",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "electron-forge": "^5.1.1",
+    "electron-prebuilt-compile": "1.8.4",
+    "eslint": "^4",
+    "eslint-plugin-react": "^7"
+  }
+}

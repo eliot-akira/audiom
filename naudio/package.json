@@ -1,0 +1,23 @@
+{
+  "name": "naudio",
+  "version": "0.0.10",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "autogypi && node-gyp configure build",
+    "install": "(npm run build || echo Warning: problems with native build)",
+    "autogypi": "autogypi",
+    "node-gyp": "node-gyp",
+    "xcodeproj": "node-gyp configure -- -f xcode"
+  },
+  "gypfile": true,
+  "dependencies": {
+    "autogypi": "^0.2.2",
+    "nan": "^2.6.2",
+    "nbind": "^0.3.13",
+    "node-gyp": "^3.6.2"
+  },
+  "devDependencies": {
+    "jest": "^20.0.4"
+  }
+}
