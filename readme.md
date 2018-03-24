@@ -6,7 +6,7 @@ Electron-based modular music-making app with native audio libraries
 
 - [x] Native bindings to [JUCE](https://www.juce.com/), [LabSound](http://labsound.io)
 - [x] Ability to host Audio Unit / VST instruments and effects
-- User modules written as React components
+- [ ] User modules written as React components
 
   For example:
   - MIDI monitor
