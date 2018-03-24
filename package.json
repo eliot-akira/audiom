@@ -1,7 +1,7 @@
 {
   "name": "audiom",
   "productName": "Audiom",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "description": "Modular music-making app",
   "main": "src/index.js",
   "scripts": {
@@ -9,8 +9,8 @@
     "install:naudio": "mkdir node_modules > /dev/null 2>&1; cd node_modules && ln -s ../naudio > /dev/null 2>&1; cd naudio && npm install --production --ignore-scripts",
     "build:naudio": "cd naudio && npm run build",
     "start": "electron-forge start",
-    "build": "electron-forge package --platform=darwin",
-    "make": "electron-forge make",
+    "build": "NODE_ENV=production electron-forge package --platform=darwin",
+    "make": "NODE_ENV=production electron-forge make",
     "_publish": "electron-forge publish",
     "_lint": "eslint --cache --color --ext .jsx,.js src",
     "clean": "cd naudio && npm run clean"
@@ -22,7 +22,6 @@
     "forge": "./forge.config.js"
   },
   "dependencies": {
-    "babel-plugin-module-resolver": "^3.1.0",
     "electron-compile": "^6.4.2",
     "electron-devtools-installer": "^2.2.3",
     "electron-squirrel-startup": "^1.0.0",
@@ -36,6 +35,7 @@
   },
   "devDependencies": {
     "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-module-resolver": "^3.1.0",
     "babel-plugin-react-require": "^3.0.0",
     "babel-plugin-transform-async-to-generator": "^6.24.1",
     "babel-plugin-transform-es2015-classes": "^6.24.1",

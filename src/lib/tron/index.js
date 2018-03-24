@@ -144,7 +144,8 @@ const startTron = async (props = {}) => {
     await ensureSingleInstance()
 
     // Dev tools - open when window ready
-    if (isDev) await installDevtools()
+    //if (isDev)
+    await installDevtools()
 
     await openWindow(config)
 

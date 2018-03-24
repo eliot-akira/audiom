@@ -4,17 +4,17 @@
       "application/javascript": {
         "presets": [
           ["env", { "targets": { "electron": "1.8.4" } }],
-          "stage-0",
-          "react"
+          "react",
+          "stage-0"
         ],
         "plugins": [
           "add-module-exports",
           "react-require",
           "transform-async-to-generator",
-          "transform-es2015-classes",
           "react-hot-loader/babel",
           ["module-resolver", {
-            "root": ["src", "src/lib"]
+            "cwd": "packagejson",
+            "root": ["./src", "./src/lib"]
           }]
         ],
         "sourceMaps": "inline"
@@ -24,16 +24,16 @@
       "application/javascript": {
         "presets": [
           ["env", { "targets": { "electron": "1.8.4" } }],
-          "stage-0",
-          "react"
+          "react",
+          "stage-0"
         ],
         "plugins": [
           "add-module-exports",
           "react-require",
           "transform-async-to-generator",
-          "transform-es2015-classes",
           ["module-resolver", {
-            "root": ["src", "src/lib"]
+            "cwd": "packagejson",
+            "root": ["./src", "./src/lib"]
           }]
         ],
         "sourceMaps": "none"

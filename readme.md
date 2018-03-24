@@ -42,7 +42,7 @@ npm run start
 
 #### Build app
 
-Build app in folder `out` - needs to rebuild native libs.
+Build app in folder `out`.
 
 ```sh
 npm run build

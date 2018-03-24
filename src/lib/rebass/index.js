@@ -1,3 +1,5 @@
+// http://jxnblk.com/rebass/getting-started
+
 export { Flex, Box } from 'grid-styled'
 
 export { default as theme } from './theme'

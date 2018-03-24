@@ -17,6 +17,16 @@ export const Slider = sys({
   '&:focus': {
     outline: 0,
   },
+
+  /*
+
+  TODO: Vertical slider
+
+  transform: rotate(90deg);
+  transform-origin: 5px 5px;
+
+  */
+
   '&::-webkit-slider-thumb': {
     width: '16px',
     height: '16px',

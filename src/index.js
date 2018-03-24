@@ -1,4 +1,4 @@
-import startTron from './tron'
+import startTron from './lib/tron'
 import api from './api'
 import { productName } from '../package.json'
 

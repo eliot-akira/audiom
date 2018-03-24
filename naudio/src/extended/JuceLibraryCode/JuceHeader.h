@@ -37,8 +37,8 @@
 #if ! JUCE_DONT_DECLARE_PROJECTINFO
 namespace ProjectInfo
 {
-    const char* const  projectName    = "vst.js";
-    const char* const  versionString  = "0.0.4";
+    const char* const  projectName    = "naudio";
+    const char* const  versionString  = "0.1.3";
     const int          versionNumber  = 0x10000;
 }
 #endif

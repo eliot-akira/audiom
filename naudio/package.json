@@ -1,6 +1,6 @@
 {
   "name": "naudio",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Node.js bindings for native audio libraries",
   "main": "index.js",
   "scripts": {

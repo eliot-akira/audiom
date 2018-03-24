@@ -8,11 +8,11 @@ using namespace lab;
 
 namespace NodeAudio {
   class NodeAudio {
-  public: 
+  public:
     static std::shared_ptr<lab::AudioContext> MakeAudioContext() {
       return lab::MakeAudioContext();
     }
-    
+
     static std::shared_ptr<lab::AudioHardwareSourceNode> MakeHardwareSourceNode(std::shared_ptr<lab::AudioContext> context) {
       std::shared_ptr<AudioHardwareSourceNode> input;
       {
@@ -22,6 +22,8 @@ namespace NodeAudio {
         }
       return input;
     }
+
+    // TODO: CleanupAudioContext
   };
 
   NBIND_CLASS(NodeAudio) {

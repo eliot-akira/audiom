@@ -27,7 +27,7 @@ export default class MenuBuilder {
 
   setupContextMenu(config) {
 
-    if (!config.isDev) return
+    //if (!config.isDev) return
 
     this.mainWindow.webContents.on('context-menu', (e, props) => {
 
@@ -110,9 +110,9 @@ export default class MenuBuilder {
       ]
     }
 
-    const subMenuView = isDev //process.env.NODE_ENV === 'development'
-      ? subMenuViewDev
-      : subMenuViewProd
+    //process.env.NODE_ENV === 'development'
+    const subMenuView = subMenuViewDev
+    //isDev ? subMenuViewDev : subMenuViewProd
 
     return [
       subMenuAbout,
