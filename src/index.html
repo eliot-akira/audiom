@@ -14,15 +14,15 @@ const { AppContainer } = require('react-hot-loader')
 
 // Render with state and action
 
-const { getState, setState, onStateChange } = require('./lib/stream')()
+let App = require('./App')
+let action
+const { getState, setState, onStateChange } = require('state-stream')()
 const el = document.getElementById('App')
 
-let App = require('./App')
+const refresh = ({ state }) => {
 
-const refresh = (props = {}) => {
-  const { state = getState() } = props
-  const action = (name, props = {}) =>
-    App.actions[name]({ state, setState, ...props })
+  action = (name, props = {}) =>
+    App.actions[name]({ state, setState, action, ...props })
 
   render(
     <AppContainer>
@@ -40,8 +40,10 @@ App.actions.init()
 // Hot-module replacement
 
 if (module.hot) module.hot.accept(() => {
+  App.actions.beforeReload()
   App = require('./App')
-  refresh()
+  refresh({ state: getState() })
+  App.actions.afterReload()
 })
 </script>
 

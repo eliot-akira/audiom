@@ -1,7 +1,7 @@
 {
   "name": "audiom",
   "productName": "Audiom",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Modular music-making app",
   "main": "src/index.js",
   "scripts": {
@@ -26,6 +26,7 @@
     "electron-compile": "^6.4.2",
     "electron-devtools-installer": "^2.2.3",
     "electron-squirrel-startup": "^1.0.0",
+    "electron-window-state": "^4.1.1",
     "naudio": "file:./naudio",
     "prop-types": "^15.6.1",
     "react": "^16.2.0",

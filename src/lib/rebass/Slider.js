@@ -14,6 +14,9 @@ export const Slider = sys({
   height: '4px',
   cursor: 'pointer',
   appearance: 'none',
+  '&:focus': {
+    outline: 0,
+  },
   '&::-webkit-slider-thumb': {
     width: '16px',
     height: '16px',

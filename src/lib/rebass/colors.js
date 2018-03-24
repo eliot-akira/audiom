@@ -1,57 +1,46 @@
-//import chroma from 'chroma-js'
+const colors = {
+  black: '#000',
+  white: '#fff',
+  darken: [
+    'rgba(0, 0, 0, 0.125)',
+    'rgba(0, 0, 0, 0.25)',
+    'rgba(0, 0, 0, 0.5)',
+    'rgba(0, 0, 0, 0.75)',
+  ],
+  dark: 'rgba(0, 0, 0, 0.75)',
+  gray: '#aaa',
+  'light-gray': '#ddd',
+  'dark-gray': '#999',
 
-const names = [
-  'red',      // 0
-  'orange',   // 30
-  'yellow',   // 60
-  'lime',     // 90
-  'green',    // 120
-  'teal',     // 150
-  'cyan',     // 180
-  'blue',     // 210
-  'indigo',   // 240
-  'violet',   // 270
-  'fuschia',  // 300
-  'pink',     // 330
-  'red',      // 360
-]
+  blue: '#0074d9',
+  green: '#19a974',
+  yellow: '#ffdc00',
+  orange: '#ff851b',
+  red: '#e74c3c',
+  purple: '#9b59b6',
+  navy: '#415F69',
+  coffee: '#343434',
+  cream: '#f3e6d5',
+  olive: '#3d9970',
 
-const hueName = h => {
-  const i = Math.round((h - 2) / 30)
-  const name = names[i]
-  return name
-}
+  'dark-gray-blue': '#313644',
+  'gray-blue': '#444b5d',
+  'light-gray-blue': '#545e75',
+  'lighter-gray-blue': '#5b6272',
 
-const createHues = h =>
-  [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ]
-    .map(n => Math.floor((h + (n * 360 / 12)) % 360))
-
-export const createColors = base => {
-  const colors = {
-    black: '#000',
-    white: '#fff',
-    darken: [
-      'rgba(0, 0, 0, 0.125)',
-      'rgba(0, 0, 0, 0.25)',
-      'rgba(0, 0, 0, 0.5)',
-      'rgba(0, 0, 0, 0.75)',
-    ],
-    dark: 'rgba(0, 0, 0, 0.75)',
-    gray: '#eee'
-  }
 /*
-  const color = chroma(base)
-  const [ hue, sat, lite ] = color.hsl()
-  const hues = createHues(hue)
-  hues.forEach(h => {
-    const name = hueName(h)
-    const val = chroma.hsl(h, sat, lite)
-    colors[name] = val.hex()
-  })
-*/
-  return colors
+  red: '',
+  orange: '',
+  yellow: '',
+  lime: '',
+  green: '',
+  teal: '',
+  cyan: '',
+  blue: '',
+  indigo: '',
+  violet: '',
+  fuschia: '',
+  pink: ''*/
 }
-
-const colors = createColors('#06e')
 
 export default colors

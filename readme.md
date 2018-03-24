@@ -48,6 +48,14 @@ Build app in folder `out` - needs to rebuild native libs.
 npm run build
 ```
 
+#### Clean
+
+Remove built native libraries so they can be rebuilt.
+
+```sh
+npm run clean
+```
+
 
 ## Credits
 

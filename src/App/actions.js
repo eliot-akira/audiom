@@ -1,33 +1,33 @@
-const path = require('path')
+const { ipcRenderer } = require('electron')
 
-export default {
+export const initState = {
+  count: 1,
+  tempo: 60
+}
+
+export const actions = {
   init() {
 
-    const {
-      NodeAudio,
-      GainNode,
-      SoundBuffer
-    } = require('naudio')
+    ipcRenderer.on('api', (e, data) => {
 
-    const ctx = NodeAudio.makeAudioContext()
-    const gainNode = new GainNode(ctx.sampleRate())
+      console.log('api response', data)
+    })
 
-    gainNode.gain().setValue(1)
-    gainNode.connect(ctx, ctx.destination(), 0, 0)
+    ipcRenderer.send('api', { name: 'init' })
 
-    const staticDir = path.join(__dirname, '..', '..', 'static')
-    const getSoundPath = file => path.join(staticDir, file)
+  },
+  beforeReload() {
 
-    const buffer = new SoundBuffer(
-      getSoundPath('test.wav'),
-      ctx.sampleRate()
-    )
+    console.log('beforeReload')
 
-    setInterval(() => {
-      console.log('x')
-      buffer.playOnNode(ctx, gainNode, 0)
-    }, 1000)
+  },
+  afterReload() {
 
+    console.log('afterReload')
+
+  },
+  setTempo({ tempo, setState }) {
+    setState({ tempo })
   },
   add({ state, setState }) {
     setState({ count: ++state.count })
