@@ -20,7 +20,7 @@ module.exports = {
     ignore: [
       // RegEx to match against absolute path of file/directory
       /\/naudio\/third_party/,
-      //\/naudio\/build/,
+      /\/forge\//,
     ],
   },
 
