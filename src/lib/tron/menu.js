@@ -27,7 +27,7 @@ export default class MenuBuilder {
 
   setupContextMenu(config) {
 
-    if (config.isDev) return
+    if (!config.isDev) return
 
     this.mainWindow.webContents.on('context-menu', (e, props) => {
 
