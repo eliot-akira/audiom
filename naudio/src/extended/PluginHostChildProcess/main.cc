@@ -1,9 +1,9 @@
 /*
   ==============================================================================
 
-    This file was auto-generated!
+    This file contains the basic startup code for a Juce application.
 
-    It contains the basic startup code for a Juce application.
+    It was auto-generated then customized.
 
   ==============================================================================
 */
@@ -35,6 +35,7 @@ public:
     StringArray params = this->getCommandLineParameterArray();
     String pluginPath = params[0];
     String pluginUUID = params[1];
+
     mainWindow = new MainWindow("Plugin Host", pluginPath, pluginUUID);
   }
 
@@ -68,7 +69,11 @@ public:
     MainWindow(String name, String pluginPath, String pluginUUID)
         : DocumentWindow(name, Colours::lightgrey, DocumentWindow::allButtons),
           PluginInterfaceHost(pluginUUID.toStdString()) {
+
       formatManager.addDefaultFormats();
+
+      // Window
+
       setUsingNativeTitleBar(true);
       setResizable(true, true);
 
@@ -100,13 +105,33 @@ public:
 
       deviceManager.initialise(256, 256, savedAudioState, true);
 
-      OwnedArray<juce::PluginDescription> foundPlugins;
-      VST3PluginFormat format;
-      format.findAllTypesForFile(foundPlugins, pluginPath);
 
-      description = foundPlugins[0];
-      AudioPluginInstance *instance = format.createInstanceFromDescription(
+      // Find and instantiate plugin
+
+      AudioPluginInstance *instance;
+      OwnedArray<juce::PluginDescription> foundPlugins;
+
+      if (pluginPath.endsWith(".vst3")) {
+
+        VST3PluginFormat formatVST;
+
+        formatVST.findAllTypesForFile(foundPlugins, pluginPath);
+        description = foundPlugins[0];
+        instance = formatVST.createInstanceFromDescription(
           *description, setup.sampleRate, setup.bufferSize);
+      } else {
+
+        AudioUnitPluginFormat formatAU;
+
+        formatAU.findAllTypesForFile(foundPlugins, pluginPath);
+        description = foundPlugins[0];
+        instance = formatAU.createInstanceFromDescription(
+          *description, setup.sampleRate, setup.bufferSize);
+      }
+
+      // Plugin not found - TODO: Destroy self instance..?
+      //if (instance == nullptr) return;
+
 
       // i/o graph nodes
       inputProcessor = new AudioProcessorGraph::AudioGraphIOProcessor(
@@ -131,7 +156,6 @@ public:
       // Get UI and add it to main window
       editor = instance->createEditor();
       this->setContentOwned(editor, true);
-
     }
 
     void hideGUI() override {
