@@ -22,7 +22,7 @@
     "forge": "./forge.config.js"
   },
   "dependencies": {
-    "electron-compile": "^6.4.2",
+    "electron-compile": "github:eliot-akira/electron-compile#built",
     "electron-devtools-installer": "^2.2.3",
     "electron-squirrel-startup": "^1.0.0",
     "electron-window-state": "^4.1.1",
@@ -30,8 +30,7 @@
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-hot-loader": "^4.0.0",
-    "styled-components": "^3.2.3"
+    "react-hot-loader": "^4.0.0"
   },
   "devDependencies": {
     "babel-plugin-add-module-exports": "^0.2.1",
@@ -42,6 +41,7 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "electron-compilers": "github:eliot-akira/electron-compilers#built",
     "electron-forge": "^5.1.1",
     "electron-prebuilt-compile": "1.8.4"
   }
