@@ -1,35 +1,64 @@
-const { ipcRenderer } = require('electron')
+const createMetronome = require('lib/mooz/metronome')
 
-export const initState = {
+export const createState = () => ({
   count: 1,
-  tempo: 60
-}
+  volume: 40,
+  tempo: 80,
+  timeSignature: '4/4',
+  isPlaying: false,
+  isPaused: false
+})
+
+let metronome
 
 export const actions = {
-  init() {
 
-    ipcRenderer.on('api', (e, data) => {
+  init({ state }) {
 
-      console.log('api response', data)
-    })
-
-    ipcRenderer.send('api', { name: 'init' })
-
+    console.log('createMetronome')
+    metronome = createMetronome()
+    metronome.setTempo(state.tempo)
+    metronome.setVolume(state.volume)
   },
   beforeReload() {
 
     console.log('beforeReload')
+
+    // Unsubscribe
 
   },
   afterReload() {
 
     console.log('afterReload')
 
+    // Resubscribe
+
   },
-  setTempo({ tempo, setState }) {
+
+  setVolume: ({ volume, setState }) => {
+    metronome.setVolume(volume)
+    setState({ volume })
+  },
+
+  setTempo: ({ tempo, setState }) => {
+    metronome.setTempo(tempo)
     setState({ tempo })
   },
-  add({ state, setState }) {
-    setState({ count: ++state.count })
+
+  setTimeSignature: ({ timeSignature, setState }) => setState({ timeSignature }),
+
+  play({ setState }) {
+    metronome.start()
+    setState({ isPlaying: true, isPaused: false })
+  },
+
+  stop({ setState }) {
+    metronome.stop()
+    setState({ isPlaying: false, isPaused: false })
+  },
+
+  pause({ setState }) {
+    metronome.pause()
+    setState({ isPlaying: false, isPaused: true })
   }
 }

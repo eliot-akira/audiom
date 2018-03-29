@@ -3,7 +3,10 @@ out
 naudio/build
 naudio/bin
 
+# Always ignore
+build
 _*
+!_*.scss
 node_modules
 *.lock
 package-lock.json

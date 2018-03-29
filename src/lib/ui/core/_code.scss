@@ -1,0 +1,37 @@
+
+$pre-font-size: 1rem !default;
+$pre-margin-top: 0 !default;
+$pre-margin-bottom: $space-2 !default;
+$pre-border-radius: $border-radius !default;
+$pre-background-color: #fafafa !default;
+
+pre, code {
+  background-color: $pre-background-color;
+  border-radius: $pre-border-radius;
+}
+
+pre, code, samp {
+  font-family: $monospace-font-family;
+  font-size: $pre-font-size;
+}
+
+pre {
+  margin-top: $pre-margin-top;
+  margin-bottom: $pre-margin-bottom;
+  padding: .75rem $space-2;
+  //overflow-x: auto;
+
+white-space: pre-wrap;       /* css-3 */
+white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+white-space: -pre-wrap;      /* Opera 4-6 */
+white-space: -o-pre-wrap;    /* Opera 7 */
+word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+
+code {
+  padding: 0.2em;
+}
+
+pre > code {
+  padding: 0;
+}

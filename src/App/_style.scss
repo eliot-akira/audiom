@@ -1,0 +1,21 @@
+
+body {
+  background-color: $gray-blue;
+  color: #f7f7f7;
+}
+
+.range-height {
+  line-height: 1.2rem;
+}
+
+input[type="range"] {
+  width: 100%;
+}
+
+.svg-icon {
+  height: 2em;
+  path {
+    fill: #f7f7f7;
+    stroke: #f7f7f7;
+  }
+}

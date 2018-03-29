@@ -3,6 +3,8 @@ out
 naudio/build
 naudio/bin
 
+# Always ignore
+build
 _*
 node_modules
 *.lock

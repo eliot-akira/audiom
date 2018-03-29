@@ -1,0 +1,107 @@
+
+$paragraph-font-size: 1.1em !default;
+$paragraph-margin-top: 15px !default; // $space-2
+$paragraph-margin-bottom: 15px !default;
+
+$list-margin-top: 0 !default;
+$list-margin-bottom: 15px !default; // $space-1
+$list-padding-left: $space-4 !default;
+$list-line-height: 1.75rem !default;
+
+html {
+  font-size: $base-font-size;
+}
+
+body {
+  color: $body-color;
+  background-color: $body-background-color;
+  font-family: $font-family;
+  font-size: $body-font-size;
+  font-weight: $body-font-weight;
+  line-height: $line-height; //1.625rem;
+  letter-spacing: .008em;
+  word-wrap: break-word;
+}
+
+b {
+  font-weight: $bold-font-weight;
+}
+strong {
+  font-weight: strong;
+}
+
+.break-word {
+  -ms-word-break: break-all;
+  -ms-word-wrap: break-all;
+  -webkit-word-break: break-word;
+  -webkit-word-wrap: break-word;
+  word-break: break-word;
+  word-wrap: break-word;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
+}
+
+p, .p {
+  //@extend .break-word;
+  font-size: $body-font-size; //$paragraph-font-size;
+  line-height: $line-height;
+  margin-top: $paragraph-margin-top;
+  margin-bottom: $paragraph-margin-bottom;
+}
+/*
+@include less-than( sm ) {
+  p, .p {
+    line-height: 1.4375rem; //$line-height;
+  }
+}*/
+
+// Markdown support: consistent
+li p {
+  margin-top: $space-1;
+  margin-bottom: $space-1;
+}
+li > p:first-child {
+  line-height: $list-line-height;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+dl, ol, ul {
+  margin-top: $list-margin-top;
+  margin-bottom: $list-margin-bottom;
+  padding-left: $list-padding-left;
+  line-height: $list-line-height;
+}
+
+dl dl, ol ol, ul ul {
+  margin-bottom: 0;
+}
+
+blockquote {
+  padding: 0 1em;
+  color: #6a737d;
+  border-left: 0.25em solid #dfe2e5;
+}
+
+blockquote>:first-child {
+  margin-top: 0;
+}
+
+blockquote>:last-child {
+  margin-bottom: 0;
+}
+
+kbd {
+  display: inline-block;
+  padding: 3px 5px;
+  font-size: 11px;
+  line-height: 10px;
+  color: #444d56;
+  vertical-align: middle;
+  background-color: #fafbfc;
+  border: solid 1px #c6cbd1;
+  border-bottom-color: #959da5;
+  border-radius: 3px;
+  box-shadow: inset 0 -1px 0 #959da5;
+}

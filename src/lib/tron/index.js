@@ -35,12 +35,15 @@ const openWindow = (config) => {
 
   mainWindow = new BrowserWindow({
     show: false, // See hook for ready-to-show below
-    width: 800, //winState.width,
-    height: 600, //winState.height,
+    width: winState.width,
+    height: winState.height,
     x: winState.x,
     y: winState.y,
-    backgroundColor: '#ffffff'
+    //useContentSize: true,
+    //resizable: false,
+    //backgroundColor: '#ffffff'
     // webPreferences: { nodeIntegration: false }
+    ...(config.mainWindow || {})
   })
 }
 
@@ -73,10 +76,15 @@ const createAPI = config => {
     }
 
     try {
+
       const response = await api[name](props)
+
       if (response) mainWindow.webContents.send('api', response)
+
     } catch (e) {
-      mainWindow.webContents.send('apiError', e.message)
+      mainWindow.webContents.send('apiError', {
+        message: e.message
+      })
     }
   }
 }
@@ -106,8 +114,7 @@ const setupWindowEvents = config => {
   mainWindow.once('ready-to-show', () => {
     mainWindow.show()
     mainWindow.focus()
-    if (!isDev) return
-    if (mainWindow.openDevTools) mainWindow.openDevTools()
+    if (isDev && mainWindow.openDevTools) mainWindow.openDevTools()
   })
 }
 
@@ -120,7 +127,6 @@ const loadDocument = config => {
   mainWindow.loadURL(`file://${rootPath}/index.html`)
 
   winState.manage(mainWindow)
-
 }
 
 const startLiveReload = () => {
@@ -133,10 +139,10 @@ const startTron = async (props = {}) => {
   const isDev = process.execPath.match(/[\\/]electron/)
   const config = {
     isDev,
-    rootPath: path.join(__dirname, '..'),
+    rootPath: path.join(__dirname, '..', '..'),
     productName: 'App',
     api: {},
-    ...props
+    ...(props instanceof Function ? props({ isDev }) : props)
   }
 
   const createMainWindow = async () => {
@@ -177,26 +183,29 @@ const startTron = async (props = {}) => {
 
   // Quit when all windows are closed.
   app.on('window-all-closed', () => {
+
     // On OS X it is common for applications and their menu bar
     // to stay active until the user quits explicitly with Cmd + Q
     //if (process.platform !== 'darwin')
+
     app.quit()
   })
 
   app.on('activate', () => {
+
     // On OS X it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
+
     //if (mainWindow === null) createMainWindow()
   })
 
   return new Promise((resolve, reject) => {
 
-  // When Electron has finished initialization and is ready
-  // to create browser windows. Some APIs can only be used
-  // after this event occurs.
+    // When Electron has finished initialization and is ready
+    // to create browser windows. Some APIs can only be used
+    // after this event occurs.
     app.on('ready', () => {
-      createMainWindow()
-      resolve()
+      createMainWindow().then(resolve)
     })
 
   })

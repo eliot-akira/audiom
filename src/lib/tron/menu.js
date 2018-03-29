@@ -32,8 +32,7 @@ export default class MenuBuilder {
     this.mainWindow.webContents.on('context-menu', (e, props) => {
 
       const { x, y } = props
-
-      Menu.buildFromTemplate([
+      const template = [
         { label: 'Inspect element',
           click: () => this.mainWindow.inspectElement(x, y)
         },
@@ -41,7 +40,14 @@ export default class MenuBuilder {
           click: () =>
             this.mainWindow.webContents.reloadIgnoringCache()
         }
-      ])
+      ]
+
+      if (this.mainWindow.isFullScreen()) template.unshift({
+        label: 'Exit Full Screen',
+        click: () => { this.mainWindow.setFullScreen(false) }
+      })
+
+      Menu.buildFromTemplate(template)
         .popup(this.mainWindow)
     })
   }
@@ -116,7 +122,7 @@ export default class MenuBuilder {
 
     return [
       subMenuAbout,
-      //subMenuEdit,
+      subMenuEdit,
       subMenuView,
       subMenuWindow,
       //subMenuHelp
