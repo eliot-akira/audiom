@@ -23,11 +23,14 @@ namespace NodeAudio {
       return input;
     }
 
-    // TODO: CleanupAudioContext
+    static void CleanupAudioContext(std::shared_ptr<lab::AudioContext> context) {
+      return lab::CleanupAudioContext(context);
+    }
   };
 
   NBIND_CLASS(NodeAudio) {
     method(MakeAudioContext, "makeAudioContext");
     method(MakeHardwareSourceNode, "makeHardwareSourceNode");
+    method(CleanupAudioContext, "cleanupAudioContext");
   };
 }
